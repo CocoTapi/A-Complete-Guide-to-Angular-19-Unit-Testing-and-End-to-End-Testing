@@ -1,5 +1,4 @@
 import { CalculatorService } from "./calculator.service";
-import { CoursesService } from "./courses.service";
 import { LoggerService } from "./logger.service";
 import { TestBed } from '@angular/core/testing'
   
@@ -9,9 +8,10 @@ describe('CalculatorService', () => {
 
     // this is a setup to avoid repeating codes
     beforeEach(() => {
-        loggerSpy = jasmine.createSpyObj('LoggerService', ["log"]);
-        calculator = new CalculatorService(loggerSpy);
-9898
+        // loggerSpy = jasmine.createSpyObj('LoggerService', ["log"]);
+        // calculator = new CalculatorService(loggerSpy);
+
+        // setup test only implementation rather than inject real instances       
         TestBed.configureTestingModule({
             providers: [
                 CalculatorService,
@@ -19,7 +19,7 @@ describe('CalculatorService', () => {
             ]
         })
 
-        calculator = TestBed.inject<CoursesService>(CoursesService);
+        calculator = TestBed.inject<CalculatorService>(CalculatorService);
 
         
     })
