@@ -8,7 +8,7 @@ describe('CalculatorService', () => {
 
     // this is a setup to avoid repeating codes
     beforeEach(() => {
-        // loggerSpy = jasmine.createSpyObj('LoggerService', ["log"]);
+        loggerSpy = jasmine.createSpyObj('LoggerService', ["log"]);
         // calculator = new CalculatorService(loggerSpy);
 
         // setup test only implementation rather than inject real instances       
@@ -25,6 +25,7 @@ describe('CalculatorService', () => {
     })
 
     it ('should add two numbers', () => {
+        console.log("Addition test");
 
         // const logger = jasmine.createSpyObj('LoggerService', ["log"]);
         // const logger = new LoggerService();
@@ -43,6 +44,8 @@ describe('CalculatorService', () => {
     }); 
 
     it ('should subtract two numbers', () => {
+        console.log("Subtraction test");
+
         // const logger = jasmine.createSpyObj('LoggerService', ["log"]); 
         // const calculator = new CalculatorService(logger);
 
