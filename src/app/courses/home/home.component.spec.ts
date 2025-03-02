@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from "@angular/core/testing";
 import { HomeComponent } from "./home.component";
 import { DebugElement } from "@angular/core";
 import { CoursesModule } from "../courses.module";
@@ -8,6 +8,7 @@ import { setupCourses } from "../common/setup-test-data";
 import { By } from "@angular/platform-browser";
 import { of } from "rxjs";
 import { click } from "../common/test-utils";
+import { flush } from "@angular/core/testing";
 
     
 
@@ -87,6 +88,9 @@ describe('HomeComponent', () => {
   });
 
 
+
+  //OPTION 1
+
   it("should display advanced courses when tab clicked", waitForAsync(() => {
 
     coursesService.findAllCourses.and.returnValue(of(setupCourses()));
@@ -112,9 +116,37 @@ describe('HomeComponent', () => {
         expect(cardTitles[0].nativeElement.textContent).toContain("Angular Security Course");
     })
 
-    
+  }));
 
-  }))     ;
+
+
+  //OPTION 2 This is usually better choice
+
+  // it("should display advanced courses when tab clicked", fakeAsync(() => {
+
+  //   coursesService.findAllCourses.and.returnValue(of(setupCourses()));
+
+  //   fixture.detectChanges();
+
+  //   const tabs = el.queryAll(By.css('.mdc-tab'));
+
+  //   // several ways for click elements
+  //   // el.nativeElement.click();
+  //   click(tabs[1]);
+
+  //   // after click, we need this
+  //   fixture.detectChanges();
+
+  //   // ensure all the tasks queues are emptied.
+  //   flush();
+
+  //   const cardTitles = el.queryAll(By.css('.mat-mdc-tab-body-active .mat-mdc-card-title'));
+
+  //   expect(cardTitles.length).toBeGreaterThan(0, "Could not find card titles");
+
+  //   expect(cardTitles[0].nativeElement.textContent).toContain("Angular Security Course");
+
+  // }));
 
 });
 
